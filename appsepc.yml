@@ -1,0 +1,36 @@
+version: 0.0
+os: linux
+files:
+  - source: /apps
+    destination: /home/flask/dashboard/apps
+  - source: /output
+    destination: /home/flask/dashboard/output
+  - source: requirements.txt
+    destination: /home/flask/dashboard
+  - source: app.py
+    destination: /home/flask/dashboard
+  - source: index.py
+    destination: /home/flask/dashboard
+  - source:  wsgi.py
+    destination: /home/flask/dashboard
+permissions:
+  - object: /
+    pattern: "**"
+    owner: ec2-user
+hooks:
+  BeforeInstall:
+    - location: ./scripts/before-install.sh
+      timeout: 300
+      runas: root
+  AfterInstall:
+    - location: ./scripts/after-install.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: ./scripts/application-start.sh
+      timeout: 300
+      runas: root
+  ApplicationStop:
+    - location: ./scripts/application-stop.sh
+      timeout: 300
+      runas: root
