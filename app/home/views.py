@@ -30,3 +30,11 @@ def admin_dashboard():
         abort(403)
 
     return render_template('home/admin_dashboard.html', title="Dashboard")
+
+@home.route('/dept1/dashboard')
+@login_required
+def dept1_dashboard():
+    if current_user.department.id != 1:
+        abort(403)
+    return render_template('home/dept1_dashboard.html', title="Dashboard for Dept1")
+

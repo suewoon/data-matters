@@ -1,36 +1,36 @@
 version: 0.0
 os: linux
 files:
-  - source: /apps
-    destination: /home/flask/dashboard/apps
-  - source: /output
-    destination: /home/flask/dashboard/output
+  - source: /app
+    destination: /home/ubuntu/datamatters/app
+  - source: /migrations
+    destination: /home/ubuntu/datamatters/migrations
   - source: requirements.txt
-    destination: /home/flask/dashboard
-  - source: app.py
-    destination: /home/flask/dashboard
-  - source: index.py
-    destination: /home/flask/dashboard
+    destination: /home/ubuntu/datamatters
+  - source: config.py
+    destination: /home/ubuntu/datamatters
+  - source: run.py
+    destination: /home/ubuntu/datamatters
   - source:  wsgi.py
-    destination: /home/flask/dashboard
+    destination: /var/www
 permissions:
-  - object: /
-    pattern: "**"
-    owner: ec2-user
+  - object: /home/ubuntu/datamatters
+    owner: ubuntu
+    group: ubuntu
 hooks:
   BeforeInstall:
-    - location: ./scripts/before-install.sh
+    - location: /scripts/before-install.sh
       timeout: 300
-      runas: root
+      runas: ubuntu
   AfterInstall:
-    - location: ./scripts/after-install.sh
+    - location: /scripts/after-install.sh
       timeout: 300
-      runas: root
+      runas: ubuntu
   ApplicationStart:
-    - location: ./scripts/application-start.sh
+    - location: /scripts/application-start.sh
       timeout: 300
-      runas: root
+      runas: ubuntu
   ApplicationStop:
-    - location: ./scripts/application-stop.sh
+    - location: /scripts/application-stop.sh
       timeout: 300
-      runas: root
+      runas: ubuntu

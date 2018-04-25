@@ -25,5 +25,9 @@ pip install requirements.txt
 
 2. Deployment with AWS CodeDeploy 
 This repo already contains `appsepc.yml` for deployment using AWS CodeDeploy. 
-2-1. 
+appspec file let a instance know how to install project codes. it consists of mainly 3 parts, files, permissions 
+and hooks. 
+
+2-3. Getting a REAL ssl certificate (Let's Encrypt)
+ 
 

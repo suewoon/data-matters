@@ -1,5 +1,6 @@
 # Instance configuration
-instance/config.py
+lendingclub/database.sqlite
+instance/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

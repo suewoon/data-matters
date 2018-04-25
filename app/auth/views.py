@@ -50,6 +50,8 @@ def login():
 
             if employee.is_admin:
                 return redirect(url_for('home.admin_dashboard'))
+            elif employee.department.id == 1:
+                return redirect(url_for('home.dept1_dashboard'))
             else:
                 return redirect(url_for('home.dashboard'))
 

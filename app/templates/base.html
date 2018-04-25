@@ -26,10 +26,11 @@
             <ul class="nav navbar-nav navbar-right">
                 {% if current_user.is_authenticated %}
                     {% if current_user.is_admin %}
-                    <li><a href="{{ url_for('home.admin_dashboard') }}">Dashboard</a></li>
-                    <li><a href="#"> Exclusive Dashboard</a></li>
+                    <li><a href="{{ url_for('home.admin_dashboard') }}">Admin Dashboard</a></li>
+                    {% elif current_user.department.id == 1 %}
+                    <li><a href="{{ url_for('home.dept1_dashboard') }}">Dept#1 Dashboard</a></li>
                     {% else %}
-                    <li><a href="{{ url_for('home.dashboard') }}"></a> </li>
+                    <li><a href="{{ url_for('home.dashboard') }}">Dashboard</a></li>
                     {% endif %}
                     <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
                     <li><a><i class="fa fa-user"></i>  Hi, {{ current_user.username }}!</a></li>
