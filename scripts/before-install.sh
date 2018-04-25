@@ -1,9 +1,21 @@
 #!/usr/bin/env bash
-export FOLDER=/home/flask/dashboard
-cd $FOLDER
-sudo python3 -m pip install virtualenv
-sudo virtualenv -p python3 venv
-source venv/bin/activate
-sudo chown -R ec2-user:ec2-user venv
-pip3 freeze > requirements.txt
-pip3 install -r requirements.txt
+# package update
+sudo apt-get update
+
+# install python
+sudo apt-get install -y \
+    python3 \
+    python3-dev \
+    python3-pip \
+    nginx \
+    git \
+    supervisor
+
+# remove if already exists
+export FOLDER=/home/ubuntu/datamatters
+
+if [ -d ${FOLDER} ]; then
+    sudo rm -R ${FOLDER}
+    mkdir ${FOLDER}
+fi
+
